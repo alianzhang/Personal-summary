@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp的实现原理</title>
+    <!-- 通过传递参数，实现前台定义后台返回的函数调用的名称-->
+    <!-- 添加async属性，是为了让引入文件变成异步加载的方式，因为默认为同步的方式，如果文件没有加载完成就会阻止下面代码的执行，而且如果页面引入的文件多了话，页面加载速度就会很慢，影响性能 -->
+    <!-- 这里的地址是一个跨域的地址 -->
+    <!-- <script async type="text/javascript" src="http://tom.com/jsonp.php?callback=abc"></script> -->
+    <!-- 这里的地址是一个同源的地址，跨域的代码肯定也能获取到同源数据 -->
+    <script async type="text/javascript" src="jsonp.php?callback=abc"></script>
+    <script type="text/javascript">
+    // 跨域获取数据采用函数调用的方式，而不是用变量，是因为变量存在执行时机的问题
+       //如果返回的是变量，就会报错，因为是异步的，上面的文件还没有加载完成，变量已经执行了，获取不到变量，就会报错
+        // console.log(abc);
+       // 我们希望即使异步的又可以获取到数据，所以采用回调函数的形式
+        // 如果是函数的方式就不会报错，因为函数预解析时只是定义了函数，还没有调用，当调用的时候数据已经返回来了，所以不会报错
+        function abc(param){
+            console.log(param);
+        }
+
+        // 希望达到的效果：通过异步的方式跨域获取数据
+
+
+
+        // 但是此处我们通过在页面写死的方式来异步获取数据传参不够灵活，所以使用jsonp2的方式
+
+    </script>
+</head>
+<body>
+    <div>jsonp</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>原生封装ajax方法的使用</title>
+    <script src="ajax.js"></script>
+    <script type="text/javascript">
+ 
+    // 调用方法
+
+    window.onload = function() {
+       var btn = document.getElementById('btn');
+        btn.onclick = function() {
+            // 点击按钮发送Ajax请求
+            ajax({
+                type:'get',
+                url : 'data.php',
+                dataType : 'text',
+                data : {flag : 'nihao'},
+                async : true,
+                success : function(data){
+                     console.log(data);
+                }
+            });
+        }
+
+
+        var btn1 = document.getElementById('btn1');
+        btn1.onclick = function() {
+            // 点击按钮发送Ajax请求
+            ajax({
+                type:'get',
+                url : 'data1.php',
+                dataType : 'json',
+                data : {flag : 'nihao'},
+                async : true,
+                success : function(data){
+                    var tag='<ul>';
+                    data.forEach(function(item,index){
+                        var name=item.name;
+                        var author=item.author;
+                        var category=item.category;
+                        var desc=item.desc;
+                         tag+='<li><span>'+name+'</span><span>'+author+'</span><span>'+category+'</span><span>'+desc+'</span></li>';
+                    })
+                    tag+='</ul>';
+                    var info=document.getElementById('info');
+                    info.innerHTML=tag;
+                }
+            });
+        }
+           
+    }
+      
+    </script>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="btn">
+    <input type="button" value="按钮1" id="btn1">
+    <div id="info"></div>
+</body>
+
+</html>

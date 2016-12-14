@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jquery中ajax的使用</title>
+    <script src="jquery.js"></script>
+    <script type="text/javascript">
+    
+
+    window.onload = function() {
+        var btn = document.getElementById('btn');
+        btn.onclick = function() {
+            // 点击按钮发送Ajax请求
+            $.ajax({
+                type:'get',
+                url : 'data1.php',
+                dataType : 'json',
+                data : {flag : 'nihao'},
+                async : true,
+                success : function(data){
+                   $.each(data,function(i,e){
+                    //1.拼接字符串
+                    // 2.JQ通过追加标签，再给标签追加数据
+                    //3.模板引擎,对于处理复杂的业务逻辑比较方便,但是前端模板引擎中的数据搜索引擎是获取不到的，不利于网站的SEO，影响搜索引擎检索
+                    var name=$('<p><span></span></p>').text(e.name);
+                    var author=$('<p><span></span></p>').text(e.author);
+                    var category=$('<p><span></span></p>').text(e.category);
+                    var desc=$('<p><span></span></p>').text(e.desc);
+                    $('#info').append(name);
+                    $('#info').append(author);
+                    $('#info').append(category);
+                    $('#info').append(desc);
+                   })
+                }
+            });
+        }
+
+        var btn1 = document.getElementById('btn1');
+        btn1.onclick = function() {
+            // 点击按钮发送Ajax请求
+            $.ajax({
+                type:'get',
+                url : 'data.php',
+                dataType : 'text',
+                data : {flag : 'nihao'},
+                async : true,
+                success : function(data){
+                }
+            });
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="btn">
+    <input type="button" value="按钮1" id="btn1">
+    <div id="info"></div>
+</body>
+
+</html>

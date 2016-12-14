@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+
+    window.onload = function() {
+        var btn=document.getElementById('btn');
+        btn.onclick=function(){
+            //点击按钮发送ajax请求
+
+            // 1.创建XMLHttpRequest对象
+            var xhr=null;
+            // 创建请求对象有兼容性问题，这里做兼容性处理
+            if(window.XMLHttpRequest){
+                xhr=new XMLHttpRequest();
+            }else{
+                xhr=new ActiveXObject('Microsoft.XMLHTTP')
+            }
+
+            // 2.准备发送，设置发送参数
+            // open有三个参数1.请求方式2.请求地址3.是否同步，默认为false即为异步
+           
+            // get请求传递参数，需要拼接数据，这里的数据不可以使用中文，有可能乱码
+            // 如果是中文的话，需要以这种方式传参,可以保证不乱码：
+            // var url='data.php' + encodeURI('?flag=程序员');
+            var url ='data.php?flag=123'
+            xhr.open('get',url);
+
+            // 3.执行发送动作
+            xhr.send(null);
+
+            // 4.指定回调函数
+            xhr.onreadystatechange=function(){
+                // 服务器响应状态码，为4表示响应完成（只是相应的动作完成了，但获取的数据不一定成功或者正确）
+                if(xhr.readyState==4){
+                    // http状态码，为200表示请求数据成功
+                    if(xhr.status==200){
+                        var data=xhr.responseText;
+                        console.log(data);
+                    }
+                }
+            }
+
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="btn">
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态创建script标签</title>
+    
+    <script type="text/javascript">
+        // 希望达到的效果：通过异步的方式跨域获取数据
+        // 动态创建script标签。这种方式默认就是异步的并且不可以设置成同步的
+        // 服务器响应内容是【函数调用】callback(参数)
+        var script = document.createElement('script');
+        // script.src = 'http://tom.com/data.php?callback=abc';
+        script.src = 'jsonp.php?callback=abc';
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(script);
+
+        function abc(data){
+            console.log(data.username);
+            console.log(data.age);
+        }
+
+    </script>
+</head>
+<body>
+    <div>jsonp</div>
+</body>
+</html>

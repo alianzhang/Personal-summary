@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+
+    window.onload = function() {
+        var btn=document.getElementById('btn');
+        btn.onclick=function(){
+            //点击按钮发送ajax请求
+
+            // 1.创建XMLHttpRequest对象
+            var xhr=null;
+            // 创建请求对象有兼容性问题，这里做兼容性处理
+            if(window.XMLHttpRequest){
+                xhr=new XMLHttpRequest();
+            }else{
+                xhr=new ActiveXObject('Microsoft.XMLHTTP')
+            }
+
+            // 2.准备发送，设置发送参数
+            // open有三个参数1.请求方式2.请求地址3.是否同步，默认为false即为异步
+           
+            xhr.open('post','data.php');
+
+            // 3.执行发送动作
+            // post提交参数传递在send中,这里的数据可以是中文eg.'flag=程序员'
+            var param='flag=hello';
+            // post必须强制设置请求头
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+            xhr.send(param);
+
+            // 4.指定回调函数
+            xhr.onreadystatechange=function(){
+                // 服务器响应状态码，为4表示响应完成（只是相应的动作完成了，但获取的数据不一定成功或者正确）
+                if(xhr.readyState==4){
+                    // http状态码，为200表示请求数据成功
+                    if(xhr.status==200){
+                        var data=xhr.responseText;
+                        console.log(data);
+                    }
+                }
+            }
+
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="btn">
+</body>
+
+</html>

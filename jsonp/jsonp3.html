@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JQ中jsonp的基本使用</title>
+	<script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+
+    // 下面演示的是JQ中的jsonp的使用
+
+	// http://tom.com/data.php?callback=jQuery111104405603228731285_1480845391021&_=1480845391022
+    // 这是JQ发出请求的格式，JQ默认传递的函数名变量是callback，但是可以通过jsonp参数指定函数名变量，和后台给的函数名变量保持一致
+
+    // _=1480845391022  是时间戳，当前时间对应的毫秒数，为了防止浏览器缓存，因为ajax每次请求都希望获取到最新的数据，加上时间戳之后每次请求的url地址都不一样了，每次都拿到的是最新的数据
+    window.onload = function(){
+        $.ajax({
+            url : 'jsonp3.php',
+            dataType : 'jsonp',
+            jsonp : 'cb',//指定函数名变量为cb，和后台给的函数名变量保持一致
+            jsonpCallback : 'abc',//指定函数名为abc
+            // 上面这两步相当于在请求接口中修改默认的callback=jQuery111104405603228731285为cb=abc
+            success : function(data){
+                console.log(data);
+                // 剩下的操作和ajax完全一样
+            }
+        });
+    }
+    </script>
+</head>
+<body>
+	 <div>jsonp</div>
+</body>
+</html>
