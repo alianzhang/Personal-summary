@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .test{
+      position: relative;
+    }
+    #btn{
+      background: #93b8ea;
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100px;
+      height: 30px;
+      pointer-events: none; 
+      /*点击穿透，设置了这个属性之后，鼠标点不到这个元素!*/
+    }
+  </style>
+</head>
+<body>
+  <div class="test">
+    <input type="file">
+    <input id="btn" type="button" value="我是小明">
+  </div>
+</body>
+</html>

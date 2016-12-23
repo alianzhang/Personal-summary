@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>同步上传文件</title>
+</head>
+<body>
+  <h1>测试</h1>
+  <!-- application/www-form-ulrencoded -->
+  <!-- enctype="multipart/form-data"指定这是一个文件类型 -->
+  <form action="/saveimg" method="post" enctype="multipart/form-data">
+  <!-- 前端上传多张图片，加个multiple属性 -->
+  <!-- image/*表示只支持图片格式的文件上传 -->
+     <input type="file" name="test" multiple accept="image/*">
+     <input type="text" name="xm" value="18">
+     <input type="submit" value="上传">
+  </form>
+</body>
+</html>

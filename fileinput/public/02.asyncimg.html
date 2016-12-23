@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>异步方式上传图片，页面不跳转</title>
+</head>
+<body>
+<!-- 异步方式上传就不需要用form表单了 -->
+   <input id="fileinput" type="file" name="test" multiple >
+   <input id="btn" type="button" value="提交">
+   <script>
+     // 1.注册点击事件
+     var btn  = document.getElementById('btn')
+     btn.addEventListener('click',function(){
+       // 2. FormData 
+       // 异步上传需要传参数，但是文件是以二进制的形式上传上去，没有参数
+       //此时，用FormData可以让我们在上传数据时,以key,value形式来模拟form表单数据
+       // FormData是h5里的！
+       var fd = new FormData()
+       // 获取fileinput对象
+       var fileinput = document.getElementById('fileinput')
+       // fileinput.files[]可以拿到所有上传文件的列表信息
+       
+       /// 如果多个文件，需要一个一个的追加
+       for (var i = 0; i < fileinput.files.length; i++) {
+         var item = fileinput.files[i]
+         fd.append('test', item)
+       }
+
+       // fd.append('name','小明')
+
+       // 3.发送数据
+       var xhr = new XMLHttpRequest()
+       xhr.open('post','/saveimg')
+
+       // 直接传递fd对象
+       xhr.send(fd)
+     })
+
+     
+   </script>
+</body>
+</html>
