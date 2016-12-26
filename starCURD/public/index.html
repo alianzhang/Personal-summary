@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+    <!-- 模态框开始 -->
+    <!-- 在模态框修改数据 -->
+    <div id="mymodel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- 设置一个隐藏域，获取当前点击数据对象的id -->
+                <input id="_id" type="hidden" >
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">明星真实姓名</span>
+                    <input id="realName" type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">明星艺名</span>
+                    <input id="stageName" type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">生日</span>
+                    <input id="birth" type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">个人作品</span>
+                    <input id="works" type="text" class="form-control" placeholder="Username">
+                </div>
+                <img id="poster" alt="">
+                <input id="fileinput" type="file">
+                <button id="upload" class="btn btn-success">上传</button>
+                <textarea id="summary" class="form-control" rows="10"></textarea>
+          <button id="save" class="btn btn-success">保存</button>
+            </div>
+        </div>
+    </div>
+    <!-- 模态框结束 -->
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active"><a href="">首页</a></li>
+        <li role="presentation"><a href="/adddata.html">添加数据</a></li>
+        <li role="presentation"><a href="#">明星写真集</a></li>
+        <li role="presentation"><a href="#">影视作品</a></li>
+        <li role="presentation"><a href="#">其他</a></li>
+    </ul>
+    <div>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+               <tr>
+                    <th>id</th>
+                    <th>真名</th>
+                    <th>艺名</th>
+                    <th>生日</th>
+                    <th>主要作品</th>
+                    <th>删除</th>
+                    <th>修改</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <nav>
+            <nav>
+                <ul class="pagination">
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </nav>
+        </nav>
+    </div>
+</body>
+
+</html>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<!-- 引入分页按钮插件 -->
+<script src="node_modules/twbs-pagination/jquery.twbsPagination.js"></script>
+<script src="assets/js/app.js"></script>
